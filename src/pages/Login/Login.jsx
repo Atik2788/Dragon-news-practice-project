@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Shared/providers/AuthProvider";
@@ -6,9 +6,13 @@ import { AuthContext } from "../Shared/providers/AuthProvider";
 
 const Login = () => {
 
-    const {login} = useContext(AuthContext)
+    const { login } = useContext(AuthContext)
 
-    const handleLogin = e =>{
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
+    const handleLogin = e => {
         e.preventDefault();
         console.log(e.currentTarget);
 
@@ -18,6 +22,10 @@ const Login = () => {
         // console.log(email, password);
 
         login(email, password)
+
+        // navigate after login
+        navigate(location?.state ? location.state : '/')
+        // form('')
     }
 
     return (
@@ -30,7 +38,7 @@ const Login = () => {
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input type="email" placeholder="email" name = "email" className="input input-bordered" required />
+                    <input type="email" placeholder="email" name="email" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">

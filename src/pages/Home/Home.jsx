@@ -21,11 +21,11 @@ const Home = () => {
                     <LeftSideNav></LeftSideNav>
                 </div>
 
-               {/*  News container */}
+                {/* News container */}
                 <div className="lg:col-span-2">
                     {
                         newses.map(news => <NewsCard 
-                            key={news.id} 
+                            key={news._id} 
                             news={news}
                             ></NewsCard>)
                     }

@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../Shared/providers/AuthProvider";
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext)
+    const {createUser} = useContext(AuthContext);
+    
+    const locaiton = useLocation();
+    const navigate = useNavigate();
+
 
     const handleRegister = e =>{
         e.preventDefault();
@@ -15,15 +19,15 @@ const Register = () => {
         const email = form.get('email');
         const photo = form.get('photo-url')
         const password = form.get('password')
-        console.log(email,name, photo, password);
+        // console.log(email,name, photo, password);
 
 
         //crate user
-        createUser(email, password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error => console.log(error))
+        createUser(email, password);
+
+        // navigate location
+        navigate(locaiton?.state ? locaiton.state : '/')
+
     }
 
     return (
