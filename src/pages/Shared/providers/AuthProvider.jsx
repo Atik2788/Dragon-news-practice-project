@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
     const login = (email, passwrod) => {
         signInWithEmailAndPassword(auth, email, passwrod)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
             })
             .catch(error => console.log(error))
         setLoading(true);
